@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+body {
+  font-family: "Orbitron", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Hackers"; /* The name you choose for your CSS property */
+  src: url("hackers-font-file.woff2") format("woff2"),
+       url("hackers-font-file.woff") format("woff"); /* Fallback formats */
+}
