@@ -13,11 +13,11 @@ function UseEffect() {
   }, []);
   return (
     <div>
-      {results.map((value) => (
-           <div key={value.id}>
-           <div>{value.name}</div>
-           <div>{value.email}</div>
-           <div>{value.body}</div>
+      {results.map((data) => (
+           <div key={data.id}>
+           <div>{data.name}</div>
+           <div>{data.email}</div>
+           <div>{data.body}</div>
         </div>
       ))}
     </div>
