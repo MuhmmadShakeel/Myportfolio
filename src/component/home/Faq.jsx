@@ -99,13 +99,10 @@ function Faq() {
         <div className="flex justify-center lg:mt-38">
 
           <div className="relative">
-
-            {/* glow background */}
-
             <div className="absolute inset-0 bg-[#009689]/20 blur-3xl rounded-full"></div>
 
             <img
-              src="https://i.pinimg.com/1200x/76/8b/48/768b482ab37c5a4f831f19508b99da0a.jpg"
+              src="https://www.shutterstock.com/image-illustration/green-faq-boxes-260nw-38007247.jpg"
               alt="faq developer"
               className="relative  w-[420px] md:w-[480px]  h-[480px]  rounded-2xl border border-[#009689]/40 shadow-xl"
             />
