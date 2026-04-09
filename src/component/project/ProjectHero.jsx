@@ -88,7 +88,7 @@ function ProjectHero() {
             View Projects
           </button>
 
-          <button className="px-8 py-5 rounded-md border border-[#00c4b4] text-[#00c4b4] hover:bg-[#00c4b4] hover:text-black transition duration-300">
+          <button className="px-8 py-3 rounded-md border border-[#00c4b4] text-[#00c4b4] hover:bg-[#00c4b4] hover:text-black transition duration-300">
             GitHub Profile
           </button>
 
