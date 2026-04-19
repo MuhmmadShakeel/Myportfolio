@@ -103,11 +103,11 @@ function AllProjects() {
               </h3>
 
               {/* Tech Tags */}
-              <div className="flex flex-wrap gap-2 mb-4">
+              <div className="flex flex-wrap gap-3 mb-6">
                 {project.tech.map((t, i) => (
                   <span
                     key={i}
-                    className="text-xs bg-[#00AC9E]/20 text-[#00AC9E] px-2 py-1 rounded"
+                    className="text-xs bg-[#00AC9E]/20 text-[#00AC9E] px-2 py-3 rounded"
                   >
                     {t}
                   </span>
@@ -126,7 +126,7 @@ function AllProjects() {
             </div>
 
             {/* FIX: Overlay not blocking clicks */}
-            <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-10 bg-[#00AC9E] blur-2xl transition"></div>
+            <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-10 bg-[#00AC9E] blur-xl transition"></div>
 
           </div>
         ))}
