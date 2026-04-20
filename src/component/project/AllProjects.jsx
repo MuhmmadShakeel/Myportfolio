@@ -67,6 +67,12 @@ const projects = [
     image: "https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg",
     tech: ["Design", "Frontend"],
   },
+  {
+    name: "Coffee Shop Project",
+    link: "https://coffee-rust-kappa.vercel.app/",
+    image: "https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg",
+    tech: ["Design", "Frontend"],
+  },
 ];
 
 function AllProjects() {
