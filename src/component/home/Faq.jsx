@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import faq from "../../assets/images/faqon.png";
 function Faq() {
 
   const [active, setActive] = useState(null);
@@ -102,7 +102,7 @@ function Faq() {
             <div className="absolute inset-0 bg-[#009689]/20 blur-3xl rounded-full"></div>
 
             <img
-              src="https://www.shutterstock.com/image-illustration/green-faq-boxes-260nw-38007247.jpg"
+              src={faq}
               alt="faq developer"
               className="relative  w-[420px] md:w-[480px]  h-[480px]  rounded-2xl border border-[#009689]/40 shadow-xl"
             />

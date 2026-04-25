@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Link } from "react-router-dom";
-import logo from "../../assets/images/logo.png";
-
+import foliologo from "../../assets/images/foliologo.png";
 function Navbar() {
 
   const [open, setOpen] = useState(false);
@@ -27,7 +26,7 @@ function Navbar() {
         <Link to="/" className="flex items-center gap-3 cursor-pointer group">
 
           <img
-            src={logo}
+            src={foliologo}
             alt="logo"
             className="h-10 w-auto transition-transform duration-300 group-hover:scale-110"
           />

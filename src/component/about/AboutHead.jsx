@@ -1,6 +1,5 @@
 import React from "react";
-import aboutimg from "../../assets/images/folioimage.png";
-
+import aboutpic from "../../assets/images/aboutpic.png";
 function AboutHead() {
   return (
 
@@ -93,17 +92,14 @@ function AboutHead() {
             <div className="absolute inset-0 blur-3xl bg-[#009689]/20 rounded-full"></div>
 
             <img
-              src={aboutimg}
+              src={aboutpic}
               alt="developer"
               className="relative w-[380px] md:w-[420px] rounded-2xl border border-[#009689]/40 shadow-xl"
             />
 
           </div>
-
         </div>
-
       </div>
-
     </section>
 
   );
