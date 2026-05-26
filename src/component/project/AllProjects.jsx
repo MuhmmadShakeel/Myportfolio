@@ -1,5 +1,5 @@
 import React from "react";
-import zooImage from "../../assets/images/zoo.png";
+import zooImage from "../../assets/images/Zoo.png";
 import ISMImage from "../../assets/images/ISM.png";
 import quranImage from "../../assets/images/alquran.png";
 import aldusariImage from "../../assets/images/aldusari.png";
@@ -8,6 +8,8 @@ import restaurantImage from "../../assets/images/az-services.png";
 import gymnasticsImage from "../../assets/images/burlo-gym.png";
 import school from "../../assets/images/online-school.png";
 import shipmentImage from "../../assets/images/shipment-dashboard.png";
+import akoya from '../../assets/images/akoya.png';
+import coffee from '../../assets/images/coffee.png'
 
 const projects = [
   {
@@ -52,6 +54,12 @@ const projects = [
     image: gymnasticsImage,
     tech: ["Fitness", "React"],
   },
+    {
+    name: "Akoya Loundary",
+    link: "https://project-gilt-rho.vercel.app/",
+    image:akoya ,
+    tech: ["Design", "Frontend"],
+  },
   {
     name: "School Management System",
     link: "https://school-management-system-7k6c.vercel.app/",
@@ -71,15 +79,9 @@ const projects = [
     tech: ["SEO", "Marketing"],
   },
   {
-    name: "Creative Project",
-    link: "https://project-gilt-rho.vercel.app/",
-    image: "https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg",
-    tech: ["Design", "Frontend"],
-  },
-  {
     name: "Coffee Shop Project",
     link: "https://coffee-rust-kappa.vercel.app/",
-    image: "https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg",
+    image: coffee,
     tech: ["Design", "Frontend"],
   },
 ];
