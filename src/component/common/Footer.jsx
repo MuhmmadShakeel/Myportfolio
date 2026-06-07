@@ -3,12 +3,12 @@ import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope } from "react-icons/fa";
 function Footer() {
 
   const links = [
-    { name: "Home", path: "#home" },
-    { name: "About", path: "#about" },
-    { name: "Skills", path: "#skills" },
-    { name: "Projects", path: "#projects" },
-    { name: "Experience", path: "#experience" },
-    { name: "Contact", path: "#contact" },
+    { name: "Home", path: "/" },
+    { name: "About", path: "about" },
+    { name: "Skills", path: "skills" },
+    { name: "Projects", path: "projects" },
+    { name: "Experience", path: "experience" },
+    { name: "Contact", path: "contact" },
   ];
 
   return (
@@ -81,28 +81,38 @@ function Footer() {
             <div className="flex gap-5 text-xl">
 
               <a
-                href="#"
+                href="https://github.com/MuhmmadShakeel"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub"
                 className="p-3 bg-[#0a0d16] rounded-lg border border-[#009689]/30 hover:border-[#009689] hover:text-[#009689] transition duration-300"
               >
                 <FaGithub />
               </a>
 
               <a
-                href="#"
+                href="https://www.linkedin.com/in/muhammad-shakeel-530b78382/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
                 className="p-3 bg-[#0a0d16] rounded-lg border border-[#009689]/30 hover:border-[#009689] hover:text-[#009689] transition duration-300"
               >
                 <FaLinkedin />
               </a>
 
               <a
-                href="#"
+                href="https://x.com/DevShaki41924"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="X"
                 className="p-3 bg-[#0a0d16] rounded-lg border border-[#009689]/30 hover:border-[#009689] hover:text-[#009689] transition duration-300"
               >
                 <FaTwitter />
               </a>
 
               <a
-                href="#"
+                href="mailto:mshakil.work@gmail.com"
+                aria-label="Email"
                 className="p-3 bg-[#0a0d16] rounded-lg border border-[#009689]/30 hover:border-[#009689] hover:text-[#009689] transition duration-300"
               >
                 <FaEnvelope />

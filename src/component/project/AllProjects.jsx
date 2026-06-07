@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import zooImage from "../../assets/images/Zoo.png";
 import ISMImage from "../../assets/images/ISM.png";
 import quranImage from "../../assets/images/alquran.png";
@@ -10,13 +10,38 @@ import school from "../../assets/images/online-school.png";
 import shipmentImage from "../../assets/images/shipment-dashboard.png";
 import akoya from '../../assets/images/akoya.png';
 import coffee from '../../assets/images/coffee.png'
-
+import lostfound from '../../assets/images/Lost-Found.png'
+import refrigeratorrepair from '../../assets/images/refrigerator.png'
+import codethinker from '../../assets/images/codethinker.png'
+import yestime from '../../assets/images/yestime.png'
+import visitingsystem from '../../assets/images/visiting-system.png'
 const projects = [
   {
     name: "Zoo Events Platform",
     link: "https://zoo-drab.vercel.app/events",
     image: zooImage,
     tech: ["React", "UI/UX"],
+    stack: "mern",
+  },
+  {
+    name: "yes-time",
+    link: "https://yes-time.vercel.app/",
+    image: yestime,
+    tech: ["React", "UI/UX"],
+  },
+  {
+    name: "visiting system",
+    link: "https://online-tour-system.vercel.app/about",
+    image: visitingsystem,
+    tech: ["React", "UI/UX"],
+    stack: "mern",
+  },
+  {
+    name: "Lost&Found System",
+    link: "https://fyp-lost-found-system.vercel.app/",
+    image: lostfound,
+    tech: ["React", "UI/UX"],
+    stack: "mern",
   },
   {
     name: "ISM Institute Website",
@@ -34,6 +59,18 @@ const projects = [
     name: "Al Dosari Reserve",
     link: "https://al-dosari-reserve.vercel.app/",
     image: aldusariImage,
+    tech: ["Booking", "UI"],
+  },
+  {
+    name: "Code-Thinker",
+    link: "https://codesthinker-rouge.vercel.app/",
+    image: codethinker,
+    tech: ["Booking", "UI"],
+  },
+  {
+    name: "Refrigerator-Repair Services",
+    link: "https://refrigerator-repair.vercel.app/",
+    image: refrigeratorrepair,
     tech: ["Booking", "UI"],
   },
   {
@@ -77,16 +114,30 @@ const projects = [
     link: "https://seo-portfolio-u2lv.vercel.app/",
     image: "https://images.pexels.com/photos/270637/pexels-photo-270637.jpeg",
     tech: ["SEO", "Marketing"],
+    stack: "frontend",
   },
   {
     name: "Coffee Shop Project",
     link: "https://coffee-rust-kappa.vercel.app/",
     image: coffee,
     tech: ["Design", "Frontend"],
+    stack: "frontend",
   },
 ];
 
 function AllProjects() {
+  const [filter, setFilter] = useState("All");
+
+  const filters = ["All", "Frontend", "Mern-STACK", "AI"];
+
+  const filteredProjects = projects.filter((p) => {
+    if (filter === "All") return true;
+    if (filter === "Frontend") return (p.stack ? p.stack.toLowerCase() === "frontend" : true);
+    if (filter === "Mern-STACK") return p.stack && p.stack.toLowerCase() === "mern";
+    if (filter === "AI") return (p.tech || []).some((t) => t.toLowerCase() === "ai" || (p.stack && p.stack.toLowerCase() === "ai"));
+    return true;
+  });
+
   return (
     <div className="bg-[#05070D] text-white py-20 px-6">
       
@@ -96,9 +147,31 @@ function AllProjects() {
       </h2>
 
       {/* Grid */}
+
+      {/* Compact centered filter bar */}
+      <div className="mb-10">
+        <div className="max-w-md mx-auto flex items-center justify-center gap-2">
+          <div className="inline-flex items-center gap-2 bg-[#0d1117] rounded-full p-1">
+            {filters.map((f) => (
+              <button
+                key={f}
+                onClick={() => setFilter(f)}
+                className={`text-xs px-3 py-1 rounded-full font-medium transition focus:outline-none ${
+                  filter === f ? "bg-[#00AC9E] cursor-pointer text-black" : "text-gray-300 cursor-pointer"
+                }`}
+                aria-pressed={filter === f}
+                aria-label={`Filter ${f}`}
+              >
+                {f}
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-10 max-w-7xl mx-auto">
         
-        {projects.map((project, index) => (
+        {filteredProjects.map((project, index) => (
           <div
             key={index}
             className="group relative bg-[#0d1117] rounded-2xl overflow-hidden border border-gray-800 hover:border-[#00AC9E] transition duration-300"

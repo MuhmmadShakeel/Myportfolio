@@ -14,7 +14,7 @@ function Hero() {
   }, []);
 
   return (
-    <section className="relative min-h-[95vh] flex items-center bg-[#05070d] text-white overflow-hidden px-8 md:px-20">
+    <section className="relative min-h-[95vh] flex items-center bg-[#05070d] text-white overflow-hidden px-5 sm:px-6 md:px-12 lg:px-20 py-12 md:py-0">
 
       {/* BACKGROUND GLOW */}
       <div className="absolute top-[-120px] left-[-120px] w-[350px] h-[350px] bg-[#009689] opacity-20 blur-[140px] rounded-full"></div>
@@ -32,23 +32,26 @@ function Hero() {
 
       <div className="relative max-w-7xl mx-auto w-full">
 
-        <div className="grid md:grid-cols-2 items-center gap-10 md:gap-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-12 md:gap-16">
 
           {/* LEFT CONTENT */}
-          <div data-aos="fade-up" className="pr-6 md:pr-12">
+          <div
+            data-aos="fade-up"
+            className="pr-0 md:pr-12 text-center md:text-left order-2 md:order-1"
+          >
 
-            <h1 className="text-4xl md:text-6xl font-bold leading-tight text-transparent bg-clip-text bg-gradient-to-r from-[#009689] to-[#00c4b4] mb-6">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-transparent bg-clip-text bg-gradient-to-r from-[#009689] to-[#00c4b4] mb-6">
               MERN Stack Developer
             </h1>
 
-            <p className="text-gray-300 text-lg leading-relaxed mb-6">
+            <p className="text-gray-300 text-base sm:text-lg leading-relaxed mb-6 max-w-xl mx-auto md:mx-0">
               I craft scalable, high-performance web applications using modern
               technologies. My expertise lies in building clean architectures,
               secure backend systems, and responsive user interfaces that deliver
               exceptional digital experiences.
             </p>
 
-            <h2 className="text-xl md:text-2xl font-semibold mb-8 text-[#00c4b4]">
+            <h2 className="text-lg sm:text-xl md:text-2xl font-semibold mb-8 text-[#00c4b4] min-h-[60px]">
               <TypeAnimation
                 sequence={[
                   "Full Stack Engineer", 1500,
@@ -61,7 +64,7 @@ function Hero() {
               />
             </h2>
 
-            <div className="flex gap-4 flex-wrap">
+            <div className="flex gap-4 flex-wrap justify-center md:justify-start">
               <button className="px-7 py-3 rounded-md bg-gradient-to-r from-[#009689] to-[#00c4b4] text-white font-medium hover:scale-105 transition shadow-lg shadow-[#009689]/30">
                 View Projects
               </button>
@@ -70,29 +73,31 @@ function Hero() {
                 Contact Me
               </button>
             </div>
+
           </div>
 
           {/* RIGHT IMAGE */}
           <div
             data-aos="fade-left"
-            className="flex justify-center md:justify-end mr-6 md:mr-12"
+            className="flex justify-center md:justify-end order-1 md:order-2"
           >
             <div className="relative flex items-center justify-center">
 
               {/* SIDE MOVING LINE */}
-              <div className="absolute w-[500px] h-[2px] bg-gradient-to-r from-transparent via-[#00c4b4] to-transparent animate-line"></div>
+              <div className="absolute w-[280px] sm:w-[380px] md:w-[500px] h-[2px] bg-gradient-to-r from-transparent via-[#00c4b4] to-transparent animate-line"></div>
 
               {/* BOTTOM LINE */}
-              <div className="absolute bottom-0 w-[300px] h-[2px] bg-gradient-to-r from-transparent via-[#009689] to-transparent animate-line-reverse"></div>
+              <div className="absolute bottom-0 w-[180px] sm:w-[250px] md:w-[300px] h-[2px] bg-gradient-to-r from-transparent via-[#009689] to-transparent animate-line-reverse"></div>
 
               {/* ROTATING CIRCLES */}
-              <div className="absolute w-[420px] h-[420px] border border-[#00c4b4]/20 rounded-full animate-spin-slow"></div>
-              <div className="absolute w-[340px] h-[340px] border border-[#009689]/20 rounded-full animate-spin-reverse"></div>
+              <div className="absolute w-[280px] h-[280px] sm:w-[350px] sm:h-[350px] md:w-[420px] md:h-[420px] border border-[#00c4b4]/20 rounded-full animate-spin-slow"></div>
+
+              <div className="absolute w-[220px] h-[220px] sm:w-[280px] sm:h-[280px] md:w-[340px] md:h-[340px] border border-[#009689]/20 rounded-full animate-spin-reverse"></div>
 
               {/* IMAGE CONTAINER */}
               <div className="relative">
 
-                {/* INNER LINES (inside image area) */}
+                {/* INNER LINES */}
                 <div className="absolute inset-0 rounded-full border border-[#00c4b4]/10"></div>
                 <div className="absolute inset-4 rounded-full border border-[#009689]/10"></div>
 
@@ -103,9 +108,10 @@ function Hero() {
                 <img
                   src={folioimagemen}
                   alt="profile"
-                  className="relative w-[300px] md:w-[380px] h-[300px] md:h-[380px] object-cover rounded-full border border-gray-700 shadow-2xl"
+                  className="relative w-[220px] sm:w-[280px] md:w-[340px] lg:w-[380px] h-[220px] sm:h-[280px] md:h-[340px] lg:h-[380px] object-cover rounded-full border border-gray-700 shadow-2xl"
                 />
               </div>
+
             </div>
           </div>
 
@@ -118,36 +124,63 @@ function Hero() {
           .animate-spin-slow {
             animation: spin 20s linear infinite;
           }
+
           .animate-spin-reverse {
             animation: spinReverse 25s linear infinite;
           }
+
           .animate-line {
             animation: moveLine 6s linear infinite;
           }
+
           .animate-line-reverse {
             animation: moveLineReverse 8s linear infinite;
           }
 
           @keyframes spin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
+            from {
+              transform: rotate(0deg);
+            }
+            to {
+              transform: rotate(360deg);
+            }
           }
 
           @keyframes spinReverse {
-            from { transform: rotate(360deg); }
-            to { transform: rotate(0deg); }
+            from {
+              transform: rotate(360deg);
+            }
+            to {
+              transform: rotate(0deg);
+            }
           }
 
           @keyframes moveLine {
-            0% { transform: translateX(-100px); opacity: 0; }
-            50% { opacity: 1; }
-            100% { transform: translateX(100px); opacity: 0; }
+            0% {
+              transform: translateX(-100px);
+              opacity: 0;
+            }
+            50% {
+              opacity: 1;
+            }
+            100% {
+              transform: translateX(100px);
+              opacity: 0;
+            }
           }
 
           @keyframes moveLineReverse {
-            0% { transform: translateX(100px); opacity: 0; }
-            50% { opacity: 1; }
-            100% { transform: translateX(-100px); opacity: 0; }
+            0% {
+              transform: translateX(100px);
+              opacity: 0;
+            }
+            50% {
+              opacity: 1;
+            }
+            100% {
+              transform: translateX(-100px);
+              opacity: 0;
+            }
           }
         `}
       </style>
