@@ -151,7 +151,7 @@ function AllProjects() {
       {/* Compact centered filter bar */}
       <div className="mb-10">
         <div className="max-w-md mx-auto flex items-center justify-center gap-2">
-          <div className="inline-flex items-center gap-2 bg-[#0d1117] rounded-full p-1">
+          <div className="inline-flex items-center gap-4 bg-[#0d1117] rounded-full p-1">
             {filters.map((f) => (
               <button
                 key={f}
