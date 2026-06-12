@@ -156,7 +156,7 @@ function AllProjects() {
               <button
                 key={f}
                 onClick={() => setFilter(f)}
-                className={`text-xs px-3 py-1 rounded-full font-medium transition focus:outline-none ${
+                className={`text-xs px-3 py-1 font-medium transition focus:outline-none ${
                   filter === f ? "bg-[#00AC9E] cursor-pointer text-black" : "text-gray-300 cursor-pointer"
                 }`}
                 aria-pressed={filter === f}
