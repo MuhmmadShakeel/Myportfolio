@@ -2,6 +2,7 @@ import './App.css'
 import Navbar from './component/common/Navbar'
 import HomePage from './pages/HomePage'
 import Footer from './component/common/Footer'
+import WhatsApp from './component/common/WhatsApp'
 import AboutPage from './pages/AboutPage'
 import ContactPage from './pages/ContactPage'
 
@@ -27,6 +28,7 @@ function App() {
           <Route path="/contact" element={<ContactPage/>} />
         </Routes>
         <Footer/>
+        <WhatsApp/>
       </BrowserRouter>
     </>
   )
