@@ -1,14 +1,15 @@
+import { Link } from "react-router-dom";
 import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope } from "react-icons/fa";
 
 function Footer() {
 
   const links = [
     { name: "Home", path: "/" },
-    { name: "About", path: "about" },
-    { name: "Skills", path: "skills" },
-    { name: "Projects", path: "projects" },
-    { name: "Experience", path: "experience" },
-    { name: "Contact", path: "contact" },
+    { name: "About", path: "/about" },
+    { name: "Skills", path: "/skills" },
+    { name: "Projects", path: "/projects" },
+    { name: "Experience", path: "/experience" },
+    { name: "Contact", path: "/contact" },
   ];
 
   return (
@@ -53,12 +54,12 @@ function Footer() {
 
                 <li key={index}>
 
-                  <a
-                    href={link.path}
+                  <Link
+                    to={link.path}
                     className="hover:text-[#009689] transition duration-300"
                   >
                     {link.name}
-                  </a>
+                  </Link>
 
                 </li>
 

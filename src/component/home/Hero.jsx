@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { TypeAnimation } from "react-type-animation";
+import { Link } from "react-router-dom";
 import folioimagemen from "../../assets/images/folioimagemen.png";
 
 function Hero() {
@@ -65,13 +66,37 @@ function Hero() {
             </h2>
 
             <div className="flex gap-4 flex-wrap justify-center md:justify-start">
-              <button className="px-7 py-3 rounded-md bg-gradient-to-r from-[#009689] to-[#00c4b4] text-white font-medium hover:scale-105 transition shadow-lg shadow-[#009689]/30">
+              <Link
+                to="/projects"
+                className="px-7 py-3 rounded-md bg-gradient-to-r from-[#009689] to-[#00c4b4] text-white font-medium hover:scale-105 transition shadow-lg shadow-[#009689]/30 flex items-center gap-2 group"
+              >
+                <svg className="w-5 h-5 group-hover:rotate-12 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0l-4 4m4-4l-4-4m10 8H5m14 0l-4 4m4-4l-4-4" />
+                </svg>
                 View Projects
-              </button>
+              </Link>
 
-              <button className="px-7 py-3 rounded-md border border-[#009689] text-[#009689] hover:bg-[#009689] hover:text-black transition">
+              <a
+                href="https://github.com/MuhmmadShakeel"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-7 py-3 rounded-md border border-[#009689] text-[#009689] hover:bg-[#009689] hover:text-black transition flex items-center gap-2 group"
+              >
+                <svg className="w-5 h-5 group-hover:rotate-12 transition-transform" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.797 1.237 1.797 1.237.98 1.797 2.588 1.266 3.199.956.092-.746.377-.261.729-.578v-3.197c-1.281-.603-2.588-1.266-2.588-1.266-.98-1.797-2.588-1.266-3.199-.956-.092.746-.377.261-.729-.956v3.197c0 1.797-1.237 2.588-1.237 2.588.98 1.797 2.588 1.266 3.199.956.092-.746.377-.261.729-.578v-3.197c-1.281-.603-2.588-1.266-2.588-1.266z" />
+                </svg>
+                GitHub Profile
+              </a>
+
+              <Link
+                to="/contact"
+                className="px-7 py-3 rounded-md border border-[#009689] text-[#009689] hover:bg-[#009689] hover:text-black transition flex items-center gap-2 group"
+              >
+                <svg className="w-5 h-5 group-hover:rotate-12 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
                 Contact Me
-              </button>
+              </Link>
             </div>
 
           </div>
