@@ -23,7 +23,7 @@ function WhatsApp() {
           <FaWhatsapp className="text-white text-3xl" />
 
           {/* Ring Animation */}
-          <div className="absolute inset-0 rounded-full border-2 border-white/20 animate-ping"></div>
+          <div className="absolute inset-0 rounded-full border-4 border-white/20 animate-ping"></div>
         </div>
 
         {/* Tooltip */}
