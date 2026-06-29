@@ -27,7 +27,7 @@ function WhatsApp() {
         </div>
 
         {/* Tooltip */}
-        <div className="absolute -top-12 right-0 opacity-0 group-hover:opacity-100 transition-all duration-300">
+        <div className="absolute -top-10 right-0 opacity-0 group-hover:opacity-100 transition-all duration-300">
           <div className="bg-gray-800 text-white text-sm px-3 py-2 rounded-lg shadow-lg whitespace-nowrap">
             Chat with us
           </div>
