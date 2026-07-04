@@ -12,7 +12,7 @@ function WhatsApp() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat on WhatsApp"
-      className="fixed bottom-6 right-6 z-50 group"
+      className="fixed bottom-6 right-6 z-48 group"
     >
       <div className="relative">
         {/* Glow Effect */}
