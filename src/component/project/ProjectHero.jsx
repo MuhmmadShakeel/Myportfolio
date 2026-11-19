@@ -1,9 +1,12 @@
+import { useTranslation } from "react-i18next"
 import React, { useEffect } from "react";
 import { TypeAnimation } from "react-type-animation";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import projectsHero from "../../assets/images/projects-hero.webp";
 
 function ProjectHero() {
+  const { t, i18n } = useTranslation()
 
   useEffect(() => {
     AOS.init({
@@ -14,7 +17,14 @@ function ProjectHero() {
   }, []);
 
   return (
-    <section className="relative w-full min-h-[80vh] flex items-center justify-center bg-[#05070d] text-white font-[Orbitron] px-6 overflow-hidden">
+    <section className="relative w-full min-h-[80vh] flex items-center justify-center bg-[#05070d] light:bg-[#f2f7f4] text-white light:text-slate-950 px-6 overflow-hidden">
+      <img
+        src={projectsHero}
+        alt=""
+        fetchPriority="high"
+        className="pointer-events-none absolute inset-0 h-full w-full object-cover"
+      />
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[#05070d]/65 light:bg-[#eff9f2]/85" />
 
       {/* Background Glow */}
       <div className="absolute top-[-120px] left-[-120px] w-[400px] h-[400px] bg-[#009689] opacity-10 blur-[150px] rounded-full"></div>
@@ -35,40 +45,39 @@ function ProjectHero() {
         {/* Heading */}
         <h1
           data-aos="fade-up"
-          className="text-4xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#009689] to-[#00c4b4] mb-6"
+          className="text-4xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#009689] light:from-teal-800 to-[#00c4b4] light:to-emerald-700 mb-6"
         >
-          My Projects
+          {t("My Projects")}
         </h1>
 
         {/* Subtitle */}
         <p
           data-aos="fade-up"
           data-aos-delay="100"
-          className="text-gray-300 text-lg max-w-2xl mx-auto mb-8"
+          className="text-gray-300 light:text-slate-800 text-lg max-w-2xl mx-auto mb-8"
         >
-          A collection of real-world applications built using modern technologies,
-          focusing on performance, scalability and professional UI/UX design.
+          {t("A collection of real-world applications built using modern technologies, focusing on performance, scalability and professional UI/UX design.")}
         </p>
 
         {/* Typing Animation */}
         <h2
           data-aos="fade-up"
           data-aos-delay="200"
-          className="text-xl md:text-2xl text-[#00c4b4] mb-10"
+          className="text-xl md:text-2xl text-[#00c4b4] light:text-teal-800 mb-10"
         >
-          <TypeAnimation
+          <TypeAnimation key={i18n.resolvedLanguage}
             sequence={[
-              "Full Stack Applications",
+              t("Full Stack Applications"),
               1500,
-              "React Frontend Projects",
+              t("React Frontend Projects"),
               1500,
-              "Node.js Backend Systems",
+              t("Node.js Backend Systems"),
               1500,
-              "MongoDB Databases",
+              t("MongoDB Databases"),
               1500,
-              "REST API Development",
+              t("REST API Development"),
               1500,
-              "Production Ready Code",
+              t("Production Ready Code"),
               1500,
             ]}
             wrapper="span"
@@ -84,12 +93,12 @@ function ProjectHero() {
           className="flex flex-wrap justify-center gap-6"
         >
 
-          <button className="px-8 py-3 rounded-md bg-gradient-to-r from-[#009689] to-[#00c4b4] text-white font-medium hover:scale-105 transition duration-300 shadow-lg hover:shadow-[#009689]/30">
-            View Projects
+          <button className="px-8 py-3 rounded-md bg-gradient-to-r from-[#009689] light:from-teal-800 to-[#00c4b4] light:to-emerald-700 text-white light:text-slate-950 font-medium hover:scale-105 transition duration-300 shadow-lg hover:shadow-[#009689]/30">
+            {t("View Projects")}
           </button>
 
-          <button className="px-8 py-3 rounded-md border border-[#00c4b4] text-[#00c4b4] hover:bg-[#00c4b4] hover:text-black transition duration-300">
-            GitHub Profile
+          <button className="px-8 py-3 rounded-md border border-[#00c4b4] text-[#00c4b4] light:text-teal-800 hover:bg-[#00c4b4] hover:text-black transition duration-300">
+            {t("GitHub Profile")}
           </button>
 
         </div>

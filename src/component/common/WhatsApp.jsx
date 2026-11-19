@@ -1,17 +1,16 @@
+import { useTranslation } from "react-i18next"
 import React from "react";
 import { FaWhatsapp } from "react-icons/fa";
+import { whatsAppUrl } from "../../contactDetails";
 
 function WhatsApp() {
-  const phoneNumber = "923105738685"; // Pakistan format
-
-  const whatsappUrl = `https://wa.me/${phoneNumber}`;
-
+  const { t } = useTranslation()
   return (
     <a
-      href={whatsappUrl}
+      href={whatsAppUrl}
       target="_blank"
       rel="noopener noreferrer"
-      aria-label="Chat on WhatsApp"
+      aria-label={t("Chat on WhatsApp")}
       className="fixed bottom-6 right-6 z-48 group"
     >
       <div className="relative">
@@ -29,12 +28,11 @@ function WhatsApp() {
         {/* Tooltip */}
         <div className="absolute -top-8 right-0 opacity-0 group-hover:opacity-100 transition-all duration-300">
           <div className="bg-gray-800 text-white text-sm px-3 py-4 rounded-lg shadow-lg whitespace-nowrap">
-            Chat with us
+            {t("Chat with us")}
           </div>
         </div>
       </div>
     </a>
   );
 }
-
 export default WhatsApp;

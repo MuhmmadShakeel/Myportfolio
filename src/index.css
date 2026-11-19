@@ -1,13 +1,38 @@
 @import "tailwindcss";
 
+@custom-variant light (&:where([data-theme="light"], [data-theme="light"] *));
+
+@theme {
+  --font-sans: "Inter", system-ui, sans-serif;
+}
+
+:root {
+  color-scheme: dark;
+  --about-hero-base: #0b171b;
+  --page-hero-shade: radial-gradient(ellipse at center, rgb(8 14 19 / 56%), rgb(8 14 19 / 93%));
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+  --about-hero-base: #e8f3ed;
+  --page-hero-shade: radial-gradient(ellipse at center, rgb(250 255 252 / 96%) 15%, rgb(235 250 241 / 69%) 68%, rgb(235 250 241 / 49%));
+}
+
 body {
-  font-family: "Orbitron", sans-serif;
+  background: #080c11;
+  font-family: var(--font-sans);
   font-optical-sizing: auto;
   font-style: normal;
 }
 
-@font-face {
-  font-family: "Hackers"; /* The name you choose for your CSS property */
-  src: url("hackers-font-file.woff2") format("woff2"),
-       url("hackers-font-file.woff") format("woff"); /* Fallback formats */
+html[data-theme="light"] body {
+  background: #f3f8f5;
+}
+html[dir="rtl"] {
+  --font-sans: "Noto Sans Arabic", "Segoe UI", Tahoma, sans-serif;
+}
+
+html[dir="rtl"] :is(h1, h2, h3) {
+  letter-spacing: normal;
+  line-height: 1.45;
 }

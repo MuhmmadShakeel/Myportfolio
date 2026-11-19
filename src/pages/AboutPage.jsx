@@ -1,11 +1,12 @@
-import React from 'react'
 import AboutHead from '../component/about/AboutHead'
+import AboutProcess from '../component/about/AboutProcess'
 
 function AboutPage() {
   return (
-    <div>
-      <AboutHead/>
-    </div>
+    <main>
+      <AboutHead />
+      <AboutProcess />
+    </main>
   )
 }
 

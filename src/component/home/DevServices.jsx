@@ -1,8 +1,9 @@
-import React from "react";
+import { useTranslation } from "react-i18next"
 import { TypeAnimation } from "react-type-animation";
 import { FaServer, FaCode, FaDatabase, FaCloud, FaLaptopCode } from "react-icons/fa";
 
 function DevServices() {
+  const { t, i18n } = useTranslation()
 
   const services = [
     {
@@ -38,71 +39,19 @@ function DevServices() {
   ];
 
   return (
-    <section className="min-h-screen w-full bg-[#06080f] text-white py-24 px-6 font-[Orbitron]">
-
-      {/* Animation Styles */}
-      <style>{`
-
-        .serviceCard{
-          position:relative;
-          overflow:hidden;
-          transition:transform 0.35s ease;
-        }
-
-        .serviceCard:hover{
-          transform:translateY(-6px);
-        }
-
-        .serviceCard::before{
-          content:"";
-          position:absolute;
-          inset:-2px;
-          border-radius:12px;
-          padding:2px;
-          background:linear-gradient(
-            90deg,
-            transparent 0%,
-            transparent 25%,
-            #009689 40%,
-            #00c4b4 60%,
-            transparent 75%,
-            transparent 100%
-          );
-          animation:borderRun 4s linear infinite;
-        }
-
-        .serviceCardInner{
-          position:relative;
-          background:#0a0d16;
-          border-radius:12px;
-          padding:32px;
-          height:100%;
-        }
-
-        @keyframes borderRun{
-          0%{
-            transform:translateX(-100%);
-          }
-          100%{
-            transform:translateX(100%);
-          }
-        }
-
-      `}</style>
+    <section aria-labelledby="development-services-title" className="portfolio-services min-h-screen w-full bg-[#06080f] light:bg-[#f7faf8] text-white light:text-slate-950 py-24 px-6">
 
       <div className="max-w-7xl mx-auto">
 
         {/* Section Heading */}
         <div className="text-center mb-20">
 
-          <h2 className="text-4xl md:text-5xl font-bold text-[#009689]">
-            Development Services
+          <h2 id="development-services-title" className="text-4xl font-semibold tracking-tight text-emerald-100 light:text-emerald-950 md:text-5xl">
+            {t("Development Services")}
           </h2>
 
-          <p className="text-white mt-5 max-w-2xl mx-auto">
-            Professional development solutions combining modern frontend
-            interfaces with powerful backend architectures and scalable
-            infrastructure.
+          <p className="mt-5 text-slate-300 light:text-slate-700 max-w-2xl mx-auto">
+            {t("Professional development solutions combining modern frontend interfaces with powerful backend architectures and scalable infrastructure.")}
           </p>
 
         </div>
@@ -111,59 +60,55 @@ function DevServices() {
         {/* Cards Grid */}
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
 
-          {services.map((service, index) => (
+          {services.map((service) => (
 
-            <div key={index} className="serviceCard">
+            <article key={service.title} className="portfolio-service-card">
 
-              <div className="serviceCardInner flex flex-col items-center text-center">
+              <div className="relative flex h-full flex-col items-center p-8 text-center">
 
                 {/* Icon */}
-                <div className="text-[#009689] text-4xl mb-4 transition duration-300 hover:text-[#00c4b4]">
+                <div aria-hidden="true" className="mb-4 text-4xl text-emerald-300 light:text-emerald-800">
                   {service.icon}
                 </div>
 
                 {/* Title */}
-                <h3 className="text-xl font-semibold text-[#009689] mb-3">
-                  {service.title}
+                <h3 className="mb-3 text-xl font-semibold text-emerald-100 light:text-emerald-950">
+                  {t(service.title)}
                 </h3>
 
                 {/* Description */}
-                <p className="text-white text-sm mb-6 leading-relaxed">
-                  {service.desc}
+                <p className="mb-6 text-sm leading-relaxed text-slate-300 light:text-slate-700">
+                  {t(service.desc)}
                 </p>
 
-                {/* Animated Tech Text */}
-                <div className="text-sm text-[#009689] bg-[#05070d] px-4 py-2 rounded-md border border-[#009689]/40">
-
-                  <TypeAnimation
+                <span className="portfolio-service-tag">
+                  <TypeAnimation key={i18n.resolvedLanguage}
                     sequence={[
-                      "React Developer",
+                      t("React Developer"),
                       1500,
-                      "HTML Expert",
+                      t("HTML Expert"),
                       1500,
-                      "CSS Specialist",
+                      t("CSS Specialist"),
                       1500,
-                      "MongoDB Database",
+                      t("MongoDB Database"),
                       1500,
-                      "Express Backend",
+                      t("Express Backend"),
                       1500,
-                      "Next.js Framework",
+                      t("Next.js Framework"),
                       1500,
-                      "Node.js Runtime",
+                      t("Node.js Runtime"),
                       1500,
-                      service.code,
+                      t(service.code),
                       1500
                     ]}
                     wrapper="span"
                     speed={60}
                     repeat={Infinity}
                   />
-
-                </div>
-
+                </span>
               </div>
 
-            </div>
+            </article>
 
           ))}
 

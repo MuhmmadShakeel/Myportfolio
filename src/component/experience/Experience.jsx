@@ -1,8 +1,10 @@
+import { useTranslation } from "react-i18next"
 import React, { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
 function Experience() {
+  const { t } = useTranslation()
 
   useEffect(() => {
     AOS.init({
@@ -14,7 +16,13 @@ function Experience() {
 
   const experiences = [
     {
-      title: "MERN Stack Developer",
+      title: "Graduation Completed",
+      company: "Brakode · IQ Center Bahawalpur",
+      date: "2026",
+      desc: "Completed my graduation in Bahawalpur."
+    },
+    {
+      title: "Full-Stack Developer",
       company: "Freelance / Personal Projects",
       date: "2024 - Present",
       desc: "Developed full stack web applications using MongoDB, Express, React and Node.js with secure authentication and scalable backend architecture."
@@ -40,7 +48,7 @@ function Experience() {
   ];
 
   return (
-    <section className="relative min-h-screen bg-[#05070d] text-white py-20 px-6 font-[Orbitron]">
+    <section id="experience-timeline" className="relative min-h-screen bg-[#05070d] light:bg-[#f2f7f4] text-white light:text-slate-950 px-6 py-24 sm:py-32">
 
       {/* Background Glow */}
       <div className="absolute top-[-200px] right-[-200px] w-[500px] h-[500px] bg-[#009689] opacity-10 blur-[180px] rounded-full"></div>
@@ -49,11 +57,11 @@ function Experience() {
 
         {/* Heading */}
         <div className="text-center mb-16" data-aos="fade-up">
-          <h2 className="text-4xl md:text-5xl font-bold text-[#009689]">
-            Experience
+          <h2 className="text-4xl md:text-5xl font-bold text-[#009689] light:text-teal-800">
+            {t("Development Timeline")}
           </h2>
-          <p className="text-gray-400 mt-4">
-            My development journey and professional growth over time.
+          <p className="text-gray-400 light:text-slate-600 mt-4">
+            {t("My development journey and professional growth over time.")}
           </p>
         </div>
 
@@ -61,7 +69,7 @@ function Experience() {
         <div className="absolute left-1/2 top-0 w-[2px] h-full bg-[#009689]/30 transform -translate-x-1/2 hidden md:block"></div>
 
         {/* Timeline Items */}
-        <div className="space-y-16">
+        <div className="space-y-16 lg:space-y-24">
 
           {experiences.map((exp, index) => (
 
@@ -77,18 +85,18 @@ function Experience() {
               <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-[#009689] rounded-full shadow-[0_0_15px_#009689] hidden md:block"></div>
 
               {/* Card */}
-              <div className="w-full md:w-[45%] bg-[#0a0d16] p-6 rounded-xl border border-[#009689]/30 hover:border-[#00c4b4] transition duration-300 shadow-lg hover:shadow-[#009689]/20">
+              <div className="w-full md:w-[45%] bg-[#0a0d16] light:bg-white p-6 rounded-xl border border-[#009689]/30 hover:border-[#00c4b4] transition duration-300 shadow-lg hover:shadow-[#009689]/20">
 
-                <h3 className="text-xl font-semibold text-[#00c4b4] mb-1">
-                  {exp.title}
+                <h3 className="text-xl font-semibold text-[#00c4b4] light:text-teal-800 mb-1">
+                  {t(exp.title)}
                 </h3>
 
-                <p className="text-sm text-gray-400 mb-2">
-                  {exp.company} • {exp.date}
+                <p className="text-sm text-gray-400 light:text-slate-600 mb-2">
+                  {t(exp.company)} • {t(exp.date)}
                 </p>
 
-                <p className="text-gray-300 text-sm leading-relaxed">
-                  {exp.desc}
+                <p className="text-gray-300 light:text-slate-800 text-sm leading-relaxed">
+                  {t(exp.desc)}
                 </p>
 
               </div>

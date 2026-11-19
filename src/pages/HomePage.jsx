@@ -8,7 +8,7 @@ function HomePage() {
   return (
     <div className='overflow-hidden'>
       <Hero/>
-      <AboutMe/>
+      <div id="portfolio-intro"><AboutMe/></div>
       <DevServices/>
       <Faq/>
     </div>

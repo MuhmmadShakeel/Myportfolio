@@ -1,9 +1,11 @@
+import { useTranslation } from "react-i18next"
 import React, { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { TypeAnimation } from "react-type-animation";
 
 function Skills() {
+  const { t, i18n } = useTranslation()
 
   useEffect(() => {
     AOS.init({
@@ -44,7 +46,7 @@ function Skills() {
   ];
 
   return (
-    <section className="relative min-h-screen w-full bg-[#05070d] text-white py-20 px-6 font-[Orbitron] overflow-hidden">
+    <section id="technical-skills" className="relative min-h-screen w-full bg-[#05070d] light:bg-[#f2f7f4] text-white light:text-slate-950 py-20 px-6 overflow-hidden">
 
       {/* Background Glow */}
       <div className="absolute top-[-150px] left-[-150px] w-[400px] h-[400px] bg-[#009689] opacity-10 blur-[150px] rounded-full"></div>
@@ -54,15 +56,15 @@ function Skills() {
         {/* Animated Heading */}
         <div className="text-center mb-16" data-aos="fade-up">
 
-          <h2 className="text-4xl md:text-5xl font-bold text-[#009689] mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-[#009689] light:text-teal-800 mb-4">
 
-            <TypeAnimation
+            <TypeAnimation key={i18n.resolvedLanguage}
               sequence={[
-                "Technical Skills",
+                t("Technical Skills"),
                 2000,
-                "My Expertise",
+                t("My Expertise"),
                 2000,
-                "Development Stack",
+                t("Development Stack"),
                 2000,
               ]}
               wrapper="span"
@@ -72,15 +74,15 @@ function Skills() {
 
           </h2>
 
-          <p className="text-gray-400 max-w-2xl mx-auto text-lg">
+          <p className="text-gray-400 light:text-slate-600 max-w-2xl mx-auto text-lg">
 
-            <TypeAnimation
+            <TypeAnimation key={i18n.resolvedLanguage}
               sequence={[
-                "Building modern, scalable and high-performance applications.",
+                t("Building modern, scalable and high-performance applications."),
                 2000,
-                "Combining frontend, backend and database technologies.",
+                t("Combining frontend, backend and database technologies."),
                 2000,
-                "Creating secure, responsive and optimized systems.",
+                t("Creating secure, responsive and optimized systems."),
                 2000,
               ]}
               wrapper="span"
@@ -100,12 +102,12 @@ function Skills() {
             <div
               key={index}
               data-aos="zoom-in"
-              className="bg-[#0a0d16] p-6 rounded-xl border border-[#009689]/30 hover:border-[#00c4b4] transition duration-300 shadow-lg hover:shadow-[#009689]/20"
+              className="bg-[#0a0d16] light:bg-white p-6 rounded-xl border border-[#009689]/30 hover:border-[#00c4b4] transition duration-300 shadow-lg hover:shadow-[#009689]/20"
             >
 
               {/* Category Title */}
-              <h3 className="text-xl font-semibold text-[#00c4b4] mb-6 text-center">
-                {category.title}
+              <h3 className="text-xl font-semibold text-[#00c4b4] light:text-teal-800 mb-6 text-center">
+                {t(category.title)}
               </h3>
 
               {/* Skills */}
@@ -116,15 +118,15 @@ function Skills() {
                   <div key={i}>
 
                     <div className="flex justify-between mb-1 text-sm">
-                      <span className="text-gray-300">{skill.name}</span>
-                      <span className="text-[#009689]">{skill.level}%</span>
+                      <span className="text-gray-300 light:text-slate-800">{t(skill.name)}</span>
+                      <span className="text-[#009689] light:text-teal-800">{skill.level}%</span>
                     </div>
 
                     {/* Progress Bar */}
-                    <div className="w-full h-2 bg-[#111827] rounded-full overflow-hidden">
+                    <div className="w-full h-2 bg-[#111827] light:bg-emerald-900/15 rounded-full overflow-hidden">
 
                       <div
-                        className="h-full bg-gradient-to-r from-[#009689] to-[#00c4b4] transition-all duration-[1500ms]"
+                        className="h-full bg-gradient-to-r from-[#009689] light:from-teal-800 to-[#00c4b4] light:to-emerald-700 transition-all duration-[1500ms]"
                         style={{ width: `${skill.level}%` }}
                       ></div>
 

@@ -1,180 +1,92 @@
-import React, { useEffect, useRef, useState } from 'react'
-import emailjs from '@emailjs/browser'
-import AOS from 'aos'
-import 'aos/dist/aos.css'
-import { Mail, Smartphone, MapPin } from 'lucide-react'
+import { useTranslation } from "react-i18next"
+import { Mail, Smartphone, MapPin, Send } from 'lucide-react'
+import { contactEmail, whatsAppUrl } from '../../contactDetails'
 
 function Contact() {
-  const formRef = useRef(null)
-  const [status, setStatus] = useState({ loading: false, message: '', type: '' })
-
-  useEffect(() => {
-    AOS.init({
-      duration: 800,
-      once: true,
-      easing: 'ease-out-cubic'
-    })
-
-    emailjs.init('-W9S2t2MMuOPmBuNu')
-  }, [])
-
-  const handleSubmit = async (event) => {
+  const { t } = useTranslation()
+  const handleSubmit = (event) => {
     event.preventDefault()
-    setStatus({ loading: true, message: 'Sending your message...', type: '' })
+    const form = new FormData(event.currentTarget)
+    const message = [
+      t('Project inquiry: {{value}}', { value: form.get('subject').trim() }),
+      t('Name: {{value}}', { value: form.get('from_name').trim() }),
+      t('Email: {{value}}', { value: form.get('reply_to').trim() }),
+      '',
+      form.get('message').trim(),
+    ].join('\n')
 
-    try {
-      await emailjs.sendForm(
-        'service_jvkvid2',
-        'template_w7l61rw',
-        formRef.current
-      )
-
-      setStatus({ loading: false, message: 'Message sent successfully. I will reply soon.', type: 'success' })
-      formRef.current.reset()
-    } catch (error) {
-      console.error('EmailJS error:', error)
-      setStatus({
-        loading: false,
-        message: 'Something went wrong. Please try again later.',
-        type: 'error'
-      })
-    }
+    window.location.assign(`${whatsAppUrl}?text=${encodeURIComponent(message)}`)
   }
 
+  const fieldClass = 'mt-1.5 w-full rounded-lg border border-white/15 light:border-emerald-900/20 bg-[#0a121a] light:bg-[#f3f8f5] px-3 py-2.5 text-white light:text-slate-950 outline-none transition placeholder:text-slate-400 light:placeholder:text-slate-500 focus:border-emerald-300 focus:ring-2 focus:ring-emerald-300/20'
+
   return (
-    <section className="relative min-h-screen bg-[#05070d] text-white px-4 py-16 sm:px-6 md:px-10 lg:px-20 font-[Orbitron] overflow-hidden">
-
-      <div className="absolute inset-x-0 top-0 h-64 bg-linear-to-br from-[#009689]/20 via-transparent to-transparent pointer-events-none" />
-      <div className="absolute -right-30 top-20 w-72 h-72 rounded-full bg-[#00c4b4]/15 blur-3xl" />
-
-      <div className="relative max-w-6xl mx-auto w-full">
-        <div className="mb-12 text-center" data-aos="fade-up">
-          <p className="text-sm uppercase tracking-[0.3em] text-[#00c4b4] mb-3">Connect With Me</p>
-          <h2 className="text-4xl md:text-5xl font-bold text-white">Professional Contact</h2>
-          <p className="mx-auto mt-4 max-w-2xl text-gray-400 leading-7">
-            Share your project requirements, collaboration ideas or a quick hello. I&apos;m ready to turn your concept
-            into a polished digital experience.
+    <section
+      aria-labelledby="contact-section-title"
+      className="grid min-h-svh items-center bg-[#080e14] light:bg-[#eff6f2] px-4 py-6 text-white light:text-slate-950 sm:px-6 lg:px-10"
+    >
+      <div className="mx-auto grid w-full max-w-6xl gap-4 md:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] md:items-center md:gap-6 lg:gap-10">
+        <div className="rounded-2xl border border-emerald-200/15 light:border-emerald-900/20 bg-linear-to-br from-emerald-950/65 light:from-emerald-100/85 to-[#0b161e] light:to-white p-4 sm:p-7">
+          <h2 id="contact-section-title" className="text-3xl font-semibold tracking-tight text-emerald-50 light:text-emerald-950 sm:text-4xl">
+            {t("Tell me about your project")}
+          </h2>
+          <p className="mt-3 text-sm leading-relaxed text-slate-300 light:text-slate-700">
+            {t("Share what you want to build, who it’s for, and any deadlines or examples you have.")}
           </p>
+
+          <address className="mt-5 grid gap-3 border-t border-white/10 light:border-emerald-900/15 pt-5 text-sm not-italic text-slate-200 light:text-slate-800">
+            <a href={`mailto:${contactEmail}`} className="flex w-fit items-center gap-3 rounded-sm hover:text-emerald-200 light:hover:text-emerald-700 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald-300 light:focus-visible:outline-emerald-700">
+              <Mail size={18} className="text-emerald-300 light:text-emerald-800" aria-hidden="true" /> <bdi>{contactEmail}</bdi>
+            </a>
+            <a href={whatsAppUrl} className="flex w-fit items-center gap-3 rounded-sm hover:text-emerald-200 light:hover:text-emerald-700 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald-300 light:focus-visible:outline-emerald-700">
+              <Smartphone size={18} className="text-emerald-300 light:text-emerald-800" aria-hidden="true" /> {t("Chat on WhatsApp")}
+            </a>
+            <p className="flex items-center gap-3">
+              <MapPin size={18} className="text-emerald-300 light:text-emerald-800" aria-hidden="true" /> {t("Lahore, Pakistan")}
+            </p>
+          </address>
         </div>
 
-        <div className="grid gap-10 lg:grid-cols-[1.05fr_1fr]">
-          <div className="space-y-6" data-aos="fade-right">
-            <div className="rounded-[28px] border border-[#009689]/20 bg-[#0b1220]/80 p-8 shadow-[0_40px_120px_rgba(0,150,137,0.08)] backdrop-blur-xl">
-              <p className="text-sm uppercase tracking-[0.32em] text-[#00c4b4] mb-4">Contact Info</p>
-              <h3 className="text-3xl font-semibold text-white mb-6">Let&apos;s build something great together.</h3>
-              <p className="text-gray-300 leading-8">
-                I respond quickly to meaningful opportunities. Use the form to send a message directly or choose any
-                preferred channel below.
-              </p>
+        <form
+          id="contact-form"
+          onSubmit={handleSubmit}
+          aria-labelledby="contact-form-title"
+          className="grid scroll-mt-4 gap-3 rounded-2xl border border-emerald-200/15 light:border-emerald-900/20 bg-[#0c1720] light:bg-white p-4 sm:grid-cols-2 sm:gap-x-4 sm:p-6"
+        >
+          <h3 id="contact-form-title" className="mb-1 text-lg font-semibold text-emerald-50 light:text-emerald-950 sm:col-span-2">{t("Send a message")}</h3>
 
-              <div className="mt-10 space-y-5">
-                <article className="flex items-start gap-4 rounded-3xl border border-white/10 bg-[#07101d] p-5">
-                  <span className="mt-1 text-[#00c4b4]"><Mail size={22} /></span>
-                  <div>
-                    <p className="text-sm uppercase text-[#00c4b4]">Email</p>
-                    <p className="text-gray-200">hello@shakidev.dev</p>
-                  </div>
-                </article>
+          <label className="block text-sm font-medium text-slate-200 light:text-slate-800">
+            {t("Full Name")}
+            <input type="text" name="from_name" autoComplete="name" maxLength={100} required className={fieldClass} placeholder={t("Your full name")} />
+          </label>
 
-                <article className="flex items-start gap-4 rounded-3xl border border-white/10 bg-[#07101d] p-5">
-                  <span className="mt-1 text-[#00c4b4]"><Smartphone size={22} /></span>
-                  <div>
-                    <p className="text-sm uppercase text-[#00c4b4]">Phone</p>
-                    <p className="text-gray-200">+92 300 123 4567</p>
-                  </div>
-                </article>
+          <label className="block text-sm font-medium text-slate-200 light:text-slate-800">
+            {t("Email Address")}
+            <input type="email" name="reply_to" autoComplete="email" maxLength={254} required className={fieldClass} placeholder="you@example.com" />
+          </label>
 
-                <article className="flex items-start gap-4 rounded-3xl border border-white/10 bg-[#07101d] p-5">
-                  <span className="mt-1 text-[#00c4b4]"><MapPin size={22} /></span>
-                  <div>
-                    <p className="text-sm uppercase text-[#00c4b4]">Location</p>
-                    <p className="text-gray-200">Lahore, Pakistan</p>
-                  </div>
-                </article>
-              </div>
-            </div>
+          <label className="block text-sm font-medium text-slate-200 light:text-slate-800 sm:col-span-2">
+            {t("Project Subject")}
+            <input type="text" name="subject" maxLength={150} required className={fieldClass} placeholder={t("What would you like to build?")} />
+          </label>
 
-            <div className="rounded-[28px] border border-[#009689]/15 bg-[#0b1220]/80 p-8 shadow-[0_20px_80px_rgba(0,0,0,0.25)]">
-              <p className="text-sm uppercase tracking-[0.32em] text-[#00c4b4] mb-4">Quick Tips</p>
-              <ul className="space-y-3 text-gray-300">
-                <li>• Keep your brief clear and concise.</li>
-                <li>• Add deadlines or timelines if available.</li>
-                <li>• Mention any design direction or examples.</li>
-              </ul>
-            </div>
-          </div>
+          <label className="block text-sm font-medium text-slate-200 light:text-slate-800 sm:col-span-2">
+            {t("Message")}
+            <textarea name="message" maxLength={4000} rows={3} required className={fieldClass} placeholder={t("Tell me about your goals and requirements.")} />
+          </label>
 
-          <form
-            ref={formRef}
-            onSubmit={handleSubmit}
-            className="w-full rounded-4xl border border-[#009689]/20 bg-[#07101d]/95 p-8 shadow-[0_50px_140px_rgba(0,150,137,0.08)] backdrop-blur-xl"
-            data-aos="fade-left"
+          <button
+            type="submit"
+            className="inline-flex items-center justify-center gap-2 rounded-lg bg-emerald-300 px-5 py-2.5 text-sm font-semibold text-slate-950 transition-colors hover:bg-emerald-200 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald-300 light:focus-visible:outline-emerald-700 sm:justify-self-start"
           >
-            <div className="grid gap-6">
-              <label className="block">
-                <span className="text-sm font-medium text-gray-300">Full Name</span>
-                <input
-                  type="text"
-                  name="from_name"
-                  required
-                  className="mt-3 w-full rounded-3xl border border-[#ffffff14] bg-[#0a1220] px-5 py-4 text-gray-100 outline-none transition focus:border-[#00c4b4] focus:ring-2 focus:ring-[#00c4b4]/20"
-                  placeholder="Your full name"
-                />
-              </label>
+            <Send size={16} aria-hidden="true" />
+            {t("Continue to WhatsApp")}
+          </button>
 
-              <label className="block">
-                <span className="text-sm font-medium text-gray-300">Email Address</span>
-                <input
-                  type="email"
-                  name="reply_to"
-                  required
-                  className="mt-3 w-full rounded-3xl border border-[#ffffff14] bg-[#0a1220] px-5 py-4 text-gray-100 outline-none transition focus:border-[#00c4b4] focus:ring-2 focus:ring-[#00c4b4]/20"
-                  placeholder="you@example.com"
-                />
-              </label>
-
-              <label className="block">
-                <span className="text-sm font-medium text-gray-300">Project Subject</span>
-                <input
-                  type="text"
-                  name="subject"
-                  required
-                  className="mt-3 w-full rounded-3xl border border-[#ffffff14] bg-[#0a1220] px-5 py-4 text-gray-100 outline-none transition focus:border-[#00c4b4] focus:ring-2 focus:ring-[#00c4b4]/20"
-                  placeholder="What would you like to build?"
-                />
-              </label>
-
-              <label className="block">
-                <span className="text-sm font-medium text-gray-300">Message</span>
-                <textarea
-                  name="message"
-                  rows="6"
-                  required
-                  className="mt-3 w-full rounded-3xl border border-[#ffffff14] bg-[#0a1220] px-5 py-4 text-gray-100 outline-none transition focus:border-[#00c4b4] focus:ring-2 focus:ring-[#00c4b4]/20"
-                  placeholder="Tell me about your idea, goals and requirements."
-                />
-              </label>
-
-              <button
-                type="submit"
-                disabled={status.loading}
-                className="inline-flex items-center justify-center rounded-3xl bg-linear-to-r from-[#00c4b4] to-[#009689] px-8 py-4 text-sm font-semibold uppercase tracking-[0.18em] text-[#05070d] transition hover:scale-[1.01] disabled:cursor-not-allowed disabled:opacity-70"
-              >
-                {status.loading ? 'Sending...' : 'Send Message'}
-              </button>
-
-              {status.message && (
-                <p
-                  className={`text-sm ${
-                    status.type === 'success' ? 'text-emerald-400' : 'text-rose-400'
-                  }`}
-                >
-                  {status.message}
-                </p>
-              )}
-            </div>
-          </form>
-        </div>
+          <p className="self-center text-sm text-slate-300 light:text-slate-700">
+            {t("Review and send your message in WhatsApp.")}
+          </p>
+        </form>
       </div>
     </section>
   )

@@ -1,21 +1,30 @@
+import { useTranslation } from "react-i18next"
 import React, { useState } from "react";
-import zooImage from "../../assets/images/Zoo.png";
-import ISMImage from "../../assets/images/ISM.png";
-import quranImage from "../../assets/images/alquran.png";
-import aldusariImage from "../../assets/images/aldusari.png";
-import carImage from "../../assets/images/linkwayride.png";
-import restaurantImage from "../../assets/images/az-services.png";
-import gymnasticsImage from "../../assets/images/burlo-gym.png";
-import school from "../../assets/images/online-school.png";
-import shipmentImage from "../../assets/images/shipment-dashboard.png";
-import akoya from '../../assets/images/akoya.png';
-import coffee from '../../assets/images/coffee.png'
-import lostfound from '../../assets/images/Lost-Found.png'
-import refrigeratorrepair from '../../assets/images/refrigerator.png'
-import codethinker from '../../assets/images/codethinker.png'
-import yestime from '../../assets/images/yestime.png'
-import visitingsystem from '../../assets/images/visiting-system.png'
+import zooImage from "../../assets/images/Zoo.webp";
+import ISMImage from "../../assets/images/ISM.webp";
+import quranImage from "../../assets/images/alquran.webp";
+import aldusariImage from "../../assets/images/aldusari.webp";
+import carImage from "../../assets/images/linkwayride.webp";
+import restaurantImage from "../../assets/images/az-services.webp";
+import gymnasticsImage from "../../assets/images/burlo-gym.webp";
+import school from "../../assets/images/online-school.webp";
+import shipmentImage from "../../assets/images/shipment-dashboard.webp";
+import akoya from '../../assets/images/akoya.webp';
+import coffee from '../../assets/images/coffee.webp'
+import lostfound from '../../assets/images/Lost-Found.webp'
+import refrigeratorrepair from '../../assets/images/refrigerator.webp'
+import codethinker from '../../assets/images/codethinker.webp'
+import yestime from '../../assets/images/yestime.webp'
+import visitingsystem from '../../assets/images/visiting-system.webp'
+import leadGenerationImage from "../../assets/images/lead-generation-ai.webp";
 const projects = [
+  {
+    name: "AI Lead Generation Scraper",
+    description: "An AI-powered lead generation tool that gathers and organizes prospect data to support more focused outreach.",
+    image: leadGenerationImage,
+    tech: ["AI", "Lead Generation"],
+    stack: "ai",
+  },
   {
     name: "Zoo Events Platform",
     link: "https://zoo-drab.vercel.app/events",
@@ -126,6 +135,7 @@ const projects = [
 ];
 
 function AllProjects() {
+  const { t, i18n } = useTranslation()
   const [filter, setFilter] = useState("All");
 
   const filters = ["All", "Frontend", "Mern-STACK", "AI"];
@@ -139,11 +149,13 @@ function AllProjects() {
   });
 
   return (
-    <div className="bg-[#05070D] text-white py-20 px-6">
+    <div className="bg-[#05070D] light:bg-[#f2f7f4] text-white light:text-slate-950 py-20 px-6">
       
       {/* Heading */}
       <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">
-        My <span className="text-[#00AC9E]">Projects</span>
+        {i18n.resolvedLanguage === "ar"
+          ? <span className="text-[#00AC9E] light:text-teal-800">{t("My Projects")}</span>
+          : <>{t("My")} <span className="text-[#00AC9E] light:text-teal-800">{t("Projects")}</span></>}
       </h2>
 
       {/* Grid */}
@@ -151,18 +163,18 @@ function AllProjects() {
       {/* Compact centered filter bar */}
       <div className="mb-10">
         <div className="max-w-md mx-auto flex items-center justify-center gap-2">
-          <div className="inline-flex items-center gap-4 bg-[#0d1117] rounded-full p-1">
+          <div className="flex flex-wrap justify-center items-center gap-1 sm:gap-4 bg-[#0d1117] light:bg-white rounded-2xl sm:rounded-full p-1">
             {filters.map((f) => (
               <button
                 key={f}
                 onClick={() => setFilter(f)}
                 className={`text-xs px-3 py-1 font-medium transition focus:outline-none ${
-                  filter === f ? "bg-[#00AC9E] cursor-pointer text-black" : "text-gray-300 cursor-pointer"
+                  filter === f ? "bg-[#00AC9E] cursor-pointer text-black" : "text-gray-300 light:text-slate-800 cursor-pointer"
                 }`}
                 aria-pressed={filter === f}
-                aria-label={`Filter ${f}`}
+                aria-label={t("Filter {{category}}", { category: t(f) })}
               >
-                {f}
+                {t(f)}
               </button>
             ))}
           </div>
@@ -174,14 +186,16 @@ function AllProjects() {
         {filteredProjects.map((project, index) => (
           <div
             key={index}
-            className="group relative bg-[#0d1117] rounded-2xl overflow-hidden border border-gray-800 hover:border-[#00AC9E] transition duration-300"
+            className="group relative bg-[#0d1117] light:bg-white rounded-2xl overflow-hidden border border-gray-800 light:border-emerald-900/20 hover:border-[#00AC9E] transition duration-300"
           >
 
             {/* Image */}
             <div className="overflow-hidden">
               <img
                 src={project.image}
-                alt={project.name}
+                loading="lazy"
+                decoding="async"
+                alt={t(project.name)}
                 className="w-full h-56 object-cover group-hover:scale-110 transition duration-500"
               />
             </div>
@@ -189,30 +203,32 @@ function AllProjects() {
             {/* Content */}
             <div className="p-6">
               <h3 className="text-xl font-semibold mb-3">
-                {project.name}
+                {t(project.name)}
               </h3>
+
+              {project.description && <p className="mb-5 text-sm leading-relaxed text-slate-400 light:text-slate-600">{t(project.description)}</p>}
 
               {/* Tech Tags */}
               <div className="flex flex-wrap gap-3 mb-6">
-                {project.tech.map((t, i) => (
+                {project.tech.map((tag, i) => (
                   <span
                     key={i}
-                    className="text-xs bg-[#00AC9E]/20 text-[#00AC9E] px-2 py-3 rounded"
+                    className="text-xs bg-[#00AC9E]/20 text-[#00AC9E] light:text-teal-800 px-2 py-3 rounded"
                   >
-                    {t}
+                    {t(tag)}
                   </span>
                 ))}
               </div>
 
               {/* FIXED BUTTON */}
-              <a
+              {project.link && <a
                 href={project.link}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block w-full text-center bg-[#00AC9E] text-black py-2 rounded-lg font-medium hover:bg-[#00c2b2] transition cursor-pointer"
               >
-                View Demo →
-              </a>
+                {t("View Demo →")}
+              </a>}
             </div>
 
             {/* FIX: Overlay not blocking clicks */}

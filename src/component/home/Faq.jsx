@@ -1,34 +1,36 @@
+import { useTranslation } from "react-i18next"
 import { useState } from "react";
-import faq from "../../assets/images/faqon.png";
+import questionMark from "../../assets/images/faq-question-mark.png";
 function Faq() {
+  const { t } = useTranslation()
 
   const [active, setActive] = useState(null);
 
   const faqs = [
     {
-      question: "What technologies do you specialize in?",
+      question: "What full-stack development services do you offer?",
       answer:
-        "I specialize in modern full-stack web development using the MERN stack including MongoDB, Express.js, React, and Node.js. I also build scalable APIs and responsive frontend interfaces."
+        "I develop responsive websites, custom web applications, and mobile apps. Full-stack development can cover the user interface, backend APIs, database design, user authentication, and deployment."
     },
     {
-      question: "Do you build both frontend and backend systems?",
+      question: "Can you develop a mobile app and a web application for the same business?",
       answer:
-        "Yes. I develop complete full-stack applications including frontend UI design, backend APIs, authentication systems, and database architecture."
+        "Yes. I can build web and mobile applications around a shared backend API. That lets both platforms use the same accounts and data while giving users an interface designed for each device."
     },
     {
-      question: "Can you deploy applications to the cloud?",
+      question: "Can you build backend APIs and integrate third-party services?",
       answer:
-        "Absolutely. I deploy applications using modern cloud platforms such as Vercel, Netlify, and other cloud services with optimized performance and scalability."
+        "Yes. I develop REST APIs, design databases, and connect applications to third-party services. I can build a backend for a new product or add features to an existing website or app."
     },
     {
-      question: "Do you work on custom web applications?",
+      question: "Do you build custom dashboards and SaaS applications?",
       answer:
-        "Yes. I build custom web applications tailored to specific business or product requirements including dashboards, SaaS platforms, and scalable systems."
+        "Yes. I develop custom web applications such as business dashboards, SaaS products, and internal tools. The scope depends on the workflows your users need, from managing records to viewing reports."
     },
     {
-      question: "Are your projects responsive and optimized?",
+      question: "How do you handle responsive design, performance, and cloud deployment?",
       answer:
-        "Every project I build is fully responsive, performance optimized, and designed to deliver a smooth user experience across all devices."
+        "I design web interfaces for phones, tablets, and desktops, optimize images and initial page loads, and configure cloud hosting for the frontend, backend, and database according to the application’s needs."
     }
   ];
 
@@ -37,7 +39,7 @@ function Faq() {
   };
   return (
 
-    <section className="w-full min-h-screen py-8 bg-[#06080f] text-white px-6 font-[Orbitron]">
+    <section aria-labelledby="development-faq-title" className="w-full min-h-screen py-8 bg-[#06080f] light:bg-[#f7faf8] text-white light:text-slate-950 px-6">
 
       <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center">
 
@@ -45,29 +47,32 @@ function Faq() {
 
         <div className="space-y-6">
 
-          <h2 className="text-4xl md:text-5xl font-bold text-[#009689] mb-8">
-            Frequently Asked Questions
+          <h2 id="development-faq-title" className="mb-8 text-4xl font-semibold tracking-tight text-emerald-100 light:text-emerald-950 md:text-5xl">
+            {t("Full-Stack Web and Mobile App Development FAQ")}
           </h2>
 
           {faqs.map((faq, index) => (
 
             <div
               key={index}
-              className="bg-[#0a0d16] border border-[#009689]/30 rounded-xl overflow-hidden transition-all duration-300 hover:border-[#009689]"
+              className="bg-[#0a0d16] light:bg-white border border-[#009689]/30 rounded-xl overflow-hidden transition-all duration-300 hover:border-[#009689]"
             >
 
               {/* Question */}
 
               <button
+                type="button"
+                aria-expanded={active === index}
+                aria-controls={`development-faq-answer-${index}`}
                 onClick={() => toggleFAQ(index)}
-                className="w-full text-left px-6 py-2 space-y-8 flex justify-between items-center"
+                className="flex w-full items-center justify-between gap-4 px-6 py-4 text-start focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-emerald-300 light:focus-visible:outline-emerald-700"
               >
 
-                <span className="text-[#009689] font-semibold">
-                  {faq.question}
+                <span className="font-semibold text-emerald-100 light:text-emerald-950">
+                  {t(faq.question)}
                 </span>
 
-                <span className="text-[#00c4b4] text-xl">
+                <span aria-hidden="true" className="text-xl text-emerald-300 light:text-emerald-800">
                   {active === index ? "-" : "+"}
                 </span>
 
@@ -76,14 +81,12 @@ function Faq() {
               {/* Answer */}
 
               <div
-                className={`px-6 transition-all duration-500 ${
-                  active === index
-                    ? "max-h-40 pb-5 opacity-100"
-                    : "max-h-0 opacity-0"
-                } overflow-hidden`}
+                id={`development-faq-answer-${index}`}
+                hidden={active !== index}
+                className="px-6 pb-5"
               >
-                <p className="text-gray-400 text-sm leading-relaxed">
-                  {faq.answer}
+                <p className="text-sm leading-relaxed text-slate-300 light:text-slate-700">
+                  {t(faq.answer)}
                 </p>
               </div>
 
@@ -98,16 +101,13 @@ function Faq() {
 
         <div className="flex justify-center lg:mt-38">
 
-          <div className="relative">
-            <div className="absolute inset-0 bg-[#009689]/20 blur-3xl rounded-full"></div>
-
-            <img
-              src={faq}
-              alt="faq developer"
-              className="relative  w-[420px] md:w-[480px]  h-[480px]  rounded-2xl border border-[#009689]/40 shadow-xl"
-            />
-
-          </div>
+          <img
+            src={questionMark}
+            loading="lazy"
+            decoding="async"
+            alt=""
+            className="aspect-square w-full max-w-[420px] object-contain md:max-w-[480px]"
+          />
 
         </div>
 
